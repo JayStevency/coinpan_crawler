@@ -11,4 +11,11 @@ import scrapy
 class CoinCrawlerItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    title = scrapy.Field()
+    nick_name = scrapy.Field()
+    level = scrapy.Field()
+    recommend = scrapy.Field()
+    non_recommend = scrapy.Field()
+    uploaded_time = scrapy.Field()
+    context = scrapy.Field()
+    view_count = scrapy.Field()
