@@ -9,25 +9,13 @@ from coin_crawler.items import CoinCrawlerItem
 
 class CoinpanItemLoader(ItemLoader):
     default_output_processor = TakeFirst()
-
     context_out = Join(' ')
-    
-
 
 
 class CoinpanSpider(CrawlSpider):
     name = 'coinpan'
     allowed_domains = ['coinpan.com']
     start_urls = ['https://coinpan.com/']
-    
-    title = scrapy.Field()
-    nick_name = scrapy.Field()
-    level = scrapy.Field()
-    recommend = scrapy.Field()
-    non_recommend = scrapy.Field()
-    uploaded_time = scrapy.Field()
-    context = scrapy.Field()
-    view_count = scrapy.Field()
     
     item_fields = {
         'title': '//div[@class="read_header"]/h1/a/text()',
@@ -36,8 +24,7 @@ class CoinpanSpider(CrawlSpider):
         'level': '//img[contains(@class, "level")]/@alt',
         'recommend': '//*[text()[contains(., "추천")]]/span/b/text()',
         'non_recommend': '//*[text()[contains(., "비추천")]]/span/b/text()',
-        #정규식
-        'uploaded_time': '//a[text()[contains(., "(19|20)d{2}\.d{2}\.d{2}")]]/text()',
+        'uploaded_time': '//span[@class="number"]/text()',
         'context': '//*[contains(@class, "xe_content")]/p/text()',
         'view_count': '//a[text()[contains(., "조회")]]/span/b/text()',
     }
